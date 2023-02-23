@@ -1,0 +1,23 @@
+[package]
+name = "web"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+utils = { path = "../utils" }
+service = {path = "../service"}
+repository = { path = "../repository" }
+
+axum = { version = "0.6.2", features = ["headers", "macros"] }
+chrono = "0.4.23"
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.23", features = ["macros", "rt-multi-thread"] }
+tower-http = { version = "0.3", features = ["cors"] }
+validator = { version = "0.16", features = ["derive"] }
+dotenvy = "0.15"
+serde_with = "2.2"
+tracing = "0.1"
+jsonwebtoken = "8.2"
+serde_json = "1.0"
+

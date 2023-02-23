@@ -1,0 +1,24 @@
+[package]
+name = "utils"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+api = { path = "../api" }
+tokio = { version = "1.23", features = ["full"]}
+sqlx = { version = "0.6.2", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid", "json"] }
+axum = { version = "0.6.2", features = ["headers", "macros"] }
+serde = { version = "1.0", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3.15", features = ["env-filter"]}
+chrono = "0.4.1"
+async-trait = "0.1"
+bcrypt = "0.14"
+serde_derive = "1.0.152"
+reqwest = { version = "0.11.14", features = ["json"] }
+serde_urlencoded = "0.7.1"
+rust-keycloak = "0.0.7"
+jsonwebtoken = "8.2.0"
+

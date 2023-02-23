@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    volumes:  # Persist the db data
+      - database-data:/var/lib/postgresql/data
+      - ./database/create-multiple-postgresql-databases.sh:/docker-entrypoint-initdb.d/create-multiple-postgresql-databases.sh
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: service_db,service_db_kc
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: psql -U postgres -q -d postgres -c "SELECT 'ready';"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    expose:
+      - 5432
+    restart: unless-stopped
+    networks:
+      - rest-service-network
+
+  keycloak:
+    volumes:
+      - ./keycloak/themes/app:/opt/jboss/keycloak/themes/app
+      - ./keycloak/imports:/opt/jboss/keycloak/imports
+    command:
+      - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: service_db_kc
+      DB_SCHEMA: public
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    image: jboss/keycloak:latest
+    container_name: keycloak
+    depends_on:
+      - postgres
+    ports:
+      - 8180:8080
+    expose:
+      - 8180
+    networks:
+      - rest-service-network
+
+
+volumes:
+  database-data:
+
+networks:
+  rest-service-network:
+    driver: bridge

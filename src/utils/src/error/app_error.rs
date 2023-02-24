@@ -1,5 +1,3 @@
-use std::path::Display;
-
 pub trait AppGenericErrorTrait {
     fn get_message(&self) -> String;
     fn get_code(&self) -> String;

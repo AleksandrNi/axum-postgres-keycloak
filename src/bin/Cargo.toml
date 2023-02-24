@@ -1,0 +1,13 @@
+[package]
+name = "bin"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+api = { path = "../api" }
+utils = { path ="../utils" }
+repository = { path = "../repository" }
+web = { path = "../web"}
+tokio = { version = "1.23", features = ["macros", "rt-multi-thread"] }
+dotenv = "0.15.0"
+tracing = "0.1.37"

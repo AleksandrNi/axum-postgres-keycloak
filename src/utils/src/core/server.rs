@@ -1,7 +1,6 @@
 use std::env;
 use std::net::IpAddr;
 use tracing::info;
-use tracing_subscriber::fmt::format;
 
 pub fn get_address() -> (IpAddr, u16) {
     let env_host = env::var_os("HOST").expect("HOST is undefined.");

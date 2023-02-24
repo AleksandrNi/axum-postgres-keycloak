@@ -21,4 +21,7 @@ reqwest = { version = "0.11.14", features = ["json"] }
 serde_urlencoded = "0.7.1"
 rust-keycloak = "0.0.7"
 jsonwebtoken = "8.2.0"
-
+redis = { version = "0.22", default-features = false, features = ["tokio-comp"] }
+bb8 = "0.8"
+bb8-redis = "0.12"
+futures = "0.3.26"

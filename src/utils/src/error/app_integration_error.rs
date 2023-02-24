@@ -1,4 +1,4 @@
-use crate::error::app_error::{AppGenericErrorTrait, AppErrorBody, AppGenericError};
+use crate::error::app_error::{AppErrorBody, AppGenericError};
 
 // body
 fn integration_error_body(err: String) -> AppErrorBody {

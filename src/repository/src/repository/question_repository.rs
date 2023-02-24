@@ -1,7 +1,6 @@
 use crate::domain::question::QuestionModel;
 use sqlx::postgres::PgRow;
-use sqlx::{Postgres, Row, Transaction};
-use utils::core::db::Tx;
+use sqlx::{Postgres, Transaction};
 use utils::error::app_error::AppGenericError;
 use utils::error::app_repository_error::AppRepositoryError;
 
